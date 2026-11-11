@@ -21,4 +21,4 @@ jobs:
       - name: Aplicar migraciones de base de datos
         run: supabase db push --remote --yes
       - name: Desplegar funciones Edge
-        run: supabase functions deploy --project-ref "$PROJECT_REF"
+        run: supabase functions deploy --remote="$PROJECT_REF" --yes
