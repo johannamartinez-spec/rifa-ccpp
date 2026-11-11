@@ -1,0 +1,24 @@
+name: Desplegar Supabase
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['supabase/**']
+concurrency: desplegar-supabase
+jobs:
+  desplegar:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with: { version: latest }
+      - name: Vincular proyecto
+        run: supabase link --project-ref "$PROJECT_REF" --password "$SUPABASE_DB_PASSWORD"
+      - name: Aplicar migraciones de base de datos
+        run: supabase db push --password "$SUPABASE_DB_PASSWORD"
+      - name: Desplegar funciones Edge
+        run: supabase functions deploy --project-ref "$PROJECT_REF"
