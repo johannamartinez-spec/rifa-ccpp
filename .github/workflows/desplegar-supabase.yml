@@ -19,6 +19,6 @@ jobs:
       - name: Vincular proyecto
         run: supabase link --project-ref "$PROJECT_REF" --password "$SUPABASE_DB_PASSWORD"
       - name: Aplicar migraciones de base de datos
-        run: supabase db push --password "$SUPABASE_DB_PASSWORD"
+        run: supabase db push --remote || supabase db push --linked
       - name: Desplegar funciones Edge
         run: supabase functions deploy --project-ref "$PROJECT_REF"
