@@ -1,0 +1,14 @@
+{
+  "name": "rifa-ccpp-db-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "bash ./reset_db.sh && vitest run"
+  },
+  "devDependencies": {
+    "pg": "^8.13.0",
+    "vitest": "^3.2.0",
+    "@types/pg": "^8.11.0",
+    "typescript": "^5.6.0"
+  }
+}

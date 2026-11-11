@@ -1,0 +1,21 @@
+# Configuración de funciones Edge. Cada función valida la autenticación
+# internamente (JWT de administrador, clave de servicio o datos de la reserva),
+# por lo que se desactiva la verificación automática del gateway: así funcionan
+# también las redirecciones de Google y Transbank, que no envían JWT.
+[functions.subir-comprobante]
+verify_jwt = false
+
+[functions.procesar-notificaciones]
+verify_jwt = false
+
+[functions.drive-oauth]
+verify_jwt = false
+
+[functions.drive-sync]
+verify_jwt = false
+
+[functions.webpay]
+verify_jwt = false
+
+[functions.admin-usuarios]
+verify_jwt = false
