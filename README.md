@@ -22,3 +22,4 @@ POSTGREST=/ruta/postgrest bash web/e2e/entorno/iniciar.sh && (cd web && npx play
 ```
 
 Variables de ejemplo: `web/.env.example` (públicas) y `supabase/functions/.env.example` (secretos del servidor).
+Sitio: https://rifa-ccpp.vercel.app
