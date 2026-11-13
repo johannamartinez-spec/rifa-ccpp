@@ -25,7 +25,7 @@ export default function Mfa() {
       if (!auth.mfaObligatorio) { nav('/admin', { replace: true }); return; }
       // limpiar factores sin verificar de intentos previos
       for (const f of data?.all ?? []) if (f.status !== 'verified') await supabase.auth.mfa.unenroll({ factorId: f.id });
-      const { data: e, error: er } = await supabase.auth.mfa.enroll({ factorType: 'totp', friendlyName: `CCPP ${new Date().toISOString().slice(0, 10)}` });
+      const { data: e, error: er } = await supabase.auth.mfa.enroll({ factorType: 'totp',    friendlyName: `CCPP ${Date.now()}` });
       if (er || !e) { setError(er?.message ?? 'No se pudo iniciar el segundo factor'); return; }
       setFactorId(e.id); setQr(e.totp.qr_code); setSecreto(e.totp.secret); setFase('enrolar');
     })();
